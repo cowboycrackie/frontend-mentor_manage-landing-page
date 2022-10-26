@@ -458,6 +458,17 @@ input:where([type="text"], [type="email"]), input:where([type="text"], [type="em
   }
 }
 
+/* slider */
+
+.slider {
+  display: flex;
+}
+
+.slider > * {
+  width: 100%;
+  flex: 0 0 auto;
+}
+
 /* utility classes */
 
 .visually-hidden {
