@@ -388,6 +388,76 @@ input:where([type="text"], [type="email"]), input:where([type="text"], [type="em
   }
 }
 
+/* numbered items */
+
+.numbered-items {
+  counter-reset: count;
+  margin-inline: auto;
+  width: fit-content;
+}
+
+.numbered-items li {
+  counter-increment: count;
+}
+
+.numbered-items div {
+  display: grid;
+  position: relative;
+  grid-template-columns: min-content 1fr;
+  align-items: center;
+  gap: var(--size-400);
+}
+
+.numbered-items__title {
+  grid-row: 1 / 2;
+  grid-column: 2 / 3;
+  line-height: 1;
+}
+
+.numbered-items div::before,
+.numbered-items div::after {
+  height: 40px;
+}
+
+.numbered-items div::before {
+  content: "0" counter(count);
+  display: flex;
+  align-items: center;
+  font-weight: var(--fw-bold);
+  color: var(--clr-neutral-100);
+  background: var(--clr-accent-400);
+  padding: 0 var(--size-500);
+  height: 40px;
+  border-radius: 100vw;
+  grid-row: 1 / 2;
+  grid-column: 1 / 2;
+}
+
+@media (max-width: 35em) {
+  .numbered-items div::after {
+    --bg: var(--clr-accent-100);
+    content: '';
+    display: block;
+    inset: 0;
+    z-index: -1;
+    border-radius: 100vw;
+    grid-column: 1 / -1;
+    grid-row: 1 / 2;
+    background: var(--bg);
+    box-shadow: 5rem 0 0 var(--bg);
+  }
+}
+
+.numbered-items__body {
+  grid-column: 1 / -1;
+}
+
+@media (min-width: 35em) {
+  .numbered-items__body {
+    grid-column: 2 / -1;
+  }
+}
+
 /* utility classes */
 
 .visually-hidden {
@@ -495,6 +565,10 @@ input:where([type="text"], [type="email"]), input:where([type="text"], [type="em
   padding-block: var(--size-700);
 }
 
+.margin-bottom-700 {
+  margin-block-end: var(--size-700);
+}
+
 .display-sm-none {
   display: none;
 }
@@ -541,4 +615,22 @@ input:where([type="text"], [type="email"]), input:where([type="text"], [type="em
 
 :is(.flow :not(:first-child)) {
   margin-top: var(--flow-spacer, 3em);
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-center p {
+  margin-inline: auo;
+}
+
+@media (max-width: 50em) {
+  .text-center-sm-only {
+    text-align: center;
+  }
+
+  .text-center-sm-only p {
+    margin-inline: auto;
+  }
 }
