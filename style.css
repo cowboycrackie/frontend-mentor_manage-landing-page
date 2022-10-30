@@ -299,36 +299,46 @@ p[data-width='wide'] {
   --logo-color: var(--clr-neutral-100);
 }
 
-.primary-footer-wrapper {
+.primary-footer__wrapper {
   display: grid;
   gap: var(--size-700);
+  justify-content: center;
+  align-items: start;
   grid-template-areas:
     'form'
     'nav'
-    'logo-social';
+    'socials'
+    'logo'
+    'copyright';
 }
 
-.primary-footer-logo-social {
-  grid-area: logo-social;
-  display: flex;
-  flex-direction: column-reverse;
-  align-items: center;
-  gap: var(--size-700);
+.primary-footer__wrapper > * {
+  margin-inline: auto;
 }
 
-.primary-footer-nav {
+.primary-footer__logo {
+  grid-area: logo;
+}
+
+.primary-footer__nav-wrapper {
   grid-area: nav;
+  max-width: 30rem;
+  margin-inline: auto;
 }
 
-.primary-footer-form {
+.primary-footer__form {
   grid-area: form;
   display: grid;
   align-content: space-between;
-}
 
-.primary-footer form {
   display: flex;
   gap: var(--size-200);
+}
+
+.primary-footer__copyright {
+  grid-area: copyright;
+  opacity: 0.5;
+  text-align: center;
 }
 
 input:where([type='text'], [type='email']),
@@ -336,31 +346,32 @@ input:where([type='text'], [type='email']):focus {
   outline: none;
   border-radius: 100vw;
   border: 0;
-  padding: var(--size-300) var(--size-400);
+  padding: var(--size-300) var(--size-500);
+  width: max(100%, 14rem);
 }
 
 @media (min-width: 50em) {
-  .primary-footer-wrapper {
-    grid-template-areas: 'logo-social nav form';
+  .primary-footer__wrapper {
+    grid-template-areas:
+      'logo nav form'
+      'socials nav copyright';
+    grid-template-columns: min-content 1fr auto;
   }
 
-  .primary-footer-logo-social {
-    align-items: flex-start;
-    gap: var(--size-700);
-    flex-direction: column;
-    justify-content: space-between;
+  .primary-footer__copyright {
+    text-align: right;
   }
 }
 
-@media (max-width: 50em) {
-  .primary-footer-wrapper > * {
+/* @media (max-width: 50em) {
+  .primary-footer__wrapper > * {
     margin-inline: auto;
   }
-}
+} */
 
 .footer-nav {
   columns: 2;
-  gap: clamp(var(--size-200), 30vw, var(--size-900));
+  gap: clamp(4rem, 10vw, 7rem);
 }
 
 .footer-nav a {
@@ -382,6 +393,17 @@ input:where([type='text'], [type='email']):focus {
   aspect-ratio: 1;
   width: var(--size-600);
   fill: var(--clr-neutral-100);
+}
+
+@media (min-width: 50em) {
+  .social-icon {
+    width: var(--size-400);
+    max-width: revert;
+  }
+
+  .social-list {
+    gap: var(--size-300);
+  }
 }
 
 .social-list a:is(:hover, :focus) .social-icon {
@@ -587,7 +609,7 @@ input:where([type='text'], [type='email']):focus {
 
 /* sales points */
 
-.sales-points {
+/* .sales-points {
   position: relative;
 }
 
@@ -598,7 +620,7 @@ input:where([type='text'], [type='email']):focus {
   right: 0;
   bottom: 90%;
   width: 50%;
-}
+} */
 
 /* utility classes */
 
@@ -746,12 +768,12 @@ input:where([type='text'], [type='email']):focus {
 }
 
 .justify-self-end {
-  justify-self: end;
+  justify-self: center;
 }
 
 @media (min-width: 50em) {
-  .justify-self-end-md {
-    justify-self: center;
+  .justify-self-end {
+    justify-self: end;
   }
 }
 
